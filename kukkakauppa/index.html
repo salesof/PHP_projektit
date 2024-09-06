@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Puutarhaliike Neilikka</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <a href="index.html"><img src="img/logo.png" /></a>
+      </div>
+      <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Etusivu</a></li>
+        <li>
+          <div class="dropdown">
+            <button class="dropbtn">
+              <a href="tuotteet.html">Tuotteet &#x25BE;</a>
+            </button>
+            <div class="dropdown-content">
+              <a href="sisakasvit.html">Sisäkasvit</a>
+              <a href="ulkokasvit.html">Ulkokasvit</a>
+              <a href="tyokalut.html">Työkalut</a>
+              <a href="hoito.html">Kasvien hoito</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="myymalat.html">Myymälät</a></li>
+        <li><a href="tietoa.html">Tietoa Meistä</a></li>
+        <li><a href="uutiset.html">Uutiset</a></li>
+        <li><a href="yhteys.html">Yhteydenotto</a></li>
+      </ul>
+    </nav>
+
+    <div class="banner-wrapper">
+      <div class="heading-wrapper">
+        <p class="banner-heading">Puutarhaliike</p>
+        <p class="neilikka">Neilikka</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <h1>Etusivu</h1>
+      <p>
+        Tervetuloa Puutarhaliike Neilikan kotisivuille! Meiltä löydät sekä sisä-
+        että ulkokasvit ja kaiken tarvitsemasi kasvien hoitoon.
+      </p>
+
+      <p>
+        Olipa toiveissasi vehreä viidakko sisätiloihin, värikäs kukkaloisto
+        parvekkeelle tai upea piha- ja puutarhakokonaisuus, Puutarhaliike
+        Neilikka auttaa sinua toteuttamaan unelmasi. Asiantunteva
+        henkilökuntamme on apunasi valitsemassa juuri sinun tarpeisiisi sopivat
+        kasvit ja hoitotuotteet, jotka menestyvät niin kotona kuin ulkona.
+        Laajasta valikoimastamme löydät myös laadukkaat työkalut ja tarvikkeet,
+        jotka tekevät puutarhatöistä vaivattomia ja mukavia.
+      </p>
+      <p>
+        Tutustu rauhassa tuotteisiimme ja palveluihimme verkkosivuillamme tai
+        tule käymään myymälässämme! Tarjoamme inspiraatiota, vinkkejä ja ideoita
+        kaikenlaisille viherpeukaloille. Puutarhaliike Neilikka on täällä
+        auttamassa sinua luomaan omasta ympäristöstäsi kauniin ja viihtyisän
+        keitaan – juuri sellaisen, josta olet aina haaveillut.
+      </p>
+
+      <h2>Uutisia</h2>
+
+      <div class="flex-wrapper"></div>
+
+      <!-- Old page content without db.json
+      <div class="flex-wrapper">
+        <div class="news-block">
+          <img src="img/news10.jpg" />
+          <p class="news-date">4.9.2024</p>
+          <p>
+            Tule hankkimaan kukkasipulit kevättä varten! Meiltä löydät nyt
+            laajan valikoiman tulppaanien, narsissien, krookusten ja muiden
+            kevään kukkien sipuleita edulliseen hintaan.
+          </p>
+        </div>
+
+        <div class="news-block">
+          <img src="img/news9.jpg" />
+          <p class="news-date">3.7.2024</p>
+          <p>
+            Puutarhakasvien karsiminen kannattaa aloittaa hyvissä ajoin! Meiltä
+            löydät kaikki tarvittavat työvälineet pitääksesi pihasi siistinä.
+          </p>
+        </div>
+
+        <div class="news-block">
+          <img src="img/news8.jpg" />
+          <p class="news-date">1.6.2024</p>
+          <p>
+            Onnea tänään valmistuville! Muista juhlasankareita kauniilla
+            ruusuilla ja kukkakimpuilla vierailemalla liikkeissämme.
+          </p>
+        </div>
+
+        <div class="news-block">
+          <img src="img/news7.jpg" />
+          <p class="news-date">15.2.2024</p>
+          <p>
+            Kevään lähestyessä on aika pistää kädet multaan ja hoitaa
+            sisäkasvien mullanvaihto. Autamme tarvittaessa valitsemaan oikean
+            mullan kasvillesi.
+          </p>
+        </div>
+
+        <div class="news-block">
+          <img src="img/news6.jpg" />
+          <p class="news-date">2.1.2024</p>
+          <p>
+            Hyvää uutta vuotta! Uuden vuoden kunniaksi myymälöissämme upeita
+            tarjouksia.
+          </p>
+        </div>
+
+        <div class="news-block">
+          <img src="img/news5.jpg" />
+          <p class="news-date">14.12.2023</p>
+          <p>
+            Joulukukat edullisesti meiltä. Myymälöissämme myös kattava ja
+            edullinen valikoima joulukuusia.
+          </p>
+        </div>
+      </div>
+      -->
+
+      <div class="center-block">
+        <a href="uutiset.html"><button>Näytä kaikki uutiset</button></a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-wrapper">
+        <div class="footer-block">
+          <p class="bold">Puutarhaliike Neilikka, Helsinki</p>
+          <p>Fabianinkatu 42</p>
+          <p>00100 Helsinki</p>
+          <br />
+          <p>Puh. xx-xxxxxxx</p>
+          <p>helsinki@puutarhaliikeneilikka.fi</p>
+        </div>
+        <div class="footer-block">
+          <p class="bold">Puutarhaliike Neilikka, Espoo</p>
+          <p>Kivenlahdentie 10</p>
+          <p>01234 Espoo</p>
+          <br />
+          <p>Puh. xx-xxxxxxx</p>
+          <p>espoo@puutarhaliikeneilikka.fi</p>
+        </div>
+      </div>
+      <p>Copyright &copy; 2024 Puutarhaliike Neilikka</p>
+    </footer>
+
+    <script src="index.js"></script>
+    <script src="nav.js"></script>
+    <script>
+      function toggleMenu() {
+        const navLinks = document.getElementById("navLinks");
+        navLinks.classList.toggle("active");
+      }
+    </script>
+  </body>
+</html>
