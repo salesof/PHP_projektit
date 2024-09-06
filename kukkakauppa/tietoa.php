@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-<?php include "components/head.php" ?>
+<?php include "modules/head.php" ?>
   <body>
-  <?php include "components/nav.php" ?>
-  <?php include "components/banner.php" ?>
+  <?php include "modules/nav.php" ?>
+  <?php include "modules/banner.php" ?>
 
     <div class="container">
       <h1>Tietoa meistä</h1>
@@ -86,6 +86,6 @@
         </li>
       </ul>
     </div>
-    <?php include "components/footer.php" ?>
+    <?php include "modules/footer.php" ?>
   </body>
 </html>

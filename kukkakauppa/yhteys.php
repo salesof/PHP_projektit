@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-<?php include "components/head.php" ?>
+<?php include "modules/head.php" ?>
   <body>
-  <?php include "components/nav.php" ?>
-  <?php include "components/banner.php" ?>
+  <?php include "modules/nav.php" ?>
+  <?php include "modules/banner.php" ?>
 
     <div class="container">
       <h1>Ota yhteyttä</h1>
@@ -102,7 +102,7 @@
     </div>
     <?php
       $js = "script/yhteys.js";
-      include "components/footer.php"
+      include "modules/footer.php"
     ?>
   </body>
 </html>
