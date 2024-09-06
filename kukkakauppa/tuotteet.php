@@ -1,45 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Puutarhaliike Neilikka</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-  </head>
+<?php include "components/head.php" ?>
   <body>
-    <nav>
-      <div class="logo">
-        <a href="index.html"><img src="img/logo.png" /></a>
-      </div>
-      <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Etusivu</a></li>
-        <li>
-          <div class="dropdown">
-            <button class="dropbtn">
-              <a href="tuotteet.html">Tuotteet &#x25BE;</a>
-            </button>
-            <div class="dropdown-content">
-              <a href="sisakasvit.html">Sisäkasvit</a>
-              <a href="ulkokasvit.html">Ulkokasvit</a>
-              <a href="tyokalut.html">Työkalut</a>
-              <a href="hoito.html">Kasvien hoito</a>
-            </div>
-          </div>
-        </li>
-        <li><a href="myymalat.html">Myymälät</a></li>
-        <li><a href="tietoa.html">Tietoa Meistä</a></li>
-        <li><a href="uutiset.html">Uutiset</a></li>
-        <li><a href="yhteys.html">Yhteydenotto</a></li>
-      </ul>
-    </nav>
-
-    <div class="banner-wrapper">
-      <div class="heading-wrapper">
-        <p class="banner-heading">Puutarhaliike</p>
-        <p class="neilikka">Neilikka</p>
-      </div>
-    </div>
+  <?php include "components/nav.php" ?>
+  <?php include "components/banner.php" ?>
 
     <div class="container">
       <h1>Tuotteet</h1>
@@ -70,7 +34,7 @@
 
       <div class="flex-wrapper">
         <div class="category-block">
-          <a href="sisakasvit.html">
+          <a href="sisakasvit.php">
             <img src="img/category1.jpg" />
             <h3>Sisäkasvit</h3>
             <p>
@@ -83,7 +47,7 @@
         </div>
 
         <div class="category-block">
-          <a href="ulkokasvit.html">
+          <a href="ulkokasvit.php">
             <img src="img/category2.jpg" />
             <h3>Ulkokasvit</h3>
             <p>
@@ -96,7 +60,7 @@
         </div>
 
         <div class="category-block">
-          <a href="tyokalut.html">
+          <a href="tyokalut.php">
             <img src="img/category3.jpg" />
             <h3>Työkalut</h3>
             <p>
@@ -110,7 +74,7 @@
         </div>
 
         <div class="category-block">
-          <a href="hoito.html">
+          <a href="hoito.php">
             <img src="img/category4.jpg" />
             <h3>Kasvien hoito</h3>
             <p>
@@ -124,35 +88,6 @@
         </div>
       </div>
     </div>
-    <footer>
-      <div class="flex-wrapper">
-        <div class="footer-wrapper">
-        <div class="footer-block">
-          <p class="bold">Puutarhaliike Neilikka, Helsinki</p>
-          <p>Fabianinkatu 42</p>
-          <p>00100 Helsinki</p>
-          <br />
-          <p>Puh. xx-xxxxxxx</p>
-          <p>helsinki@puutarhaliikeneilikka.fi</p>
-        </div>
-        <div class="footer-block">
-          <p class="bold">Puutarhaliike Neilikka, Espoo</p>
-          <p>Kivenlahdentie 10</p>
-          <p>01234 Espoo</p>
-          <br />
-          <p>Puh. xx-xxxxxxx</p>
-          <p>espoo@puutarhaliikeneilikka.fi</p>
-        </div>
-      </div>
-    </div>
-      <p>Copyright &copy; 2024 Puutarhaliike Neilikka</p>
-    </footer>
-    <script src="nav.js"></script>
-    <script>
-      function toggleMenu() {
-        const navLinks = document.getElementById("navLinks");
-        navLinks.classList.toggle("active");
-      }
-    </script>
+    <?php include "components/footer.php" ?>
   </body>
 </html>
