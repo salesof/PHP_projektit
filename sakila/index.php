@@ -26,7 +26,7 @@
             $result = mysqli_my_query($query);
             $lkm = $result->num_rows;
             if ($lkm > 0) {
-                echo "<h2>Hakusanalla $hakuavain löytyi $lkm tulosta:</h2>";
+                echo "<h2 class='result'>Hakusanalla '$hakuavain' löytyi $lkm tulosta:</h2>";
                 while ($row = $result->fetch_assoc()) {
                     foreach ($row as $key => $value) {
                         echo "<b>$key:</b> $value<br>";

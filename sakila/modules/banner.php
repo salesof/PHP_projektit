@@ -1,5 +1,5 @@
 <div class="banner-wrapper">
   <div class="heading-wrapper">
-    <p class="sakila">Sakila</p>
+    <p class="sakila">SAKILA</p>
   </div>
 </div>
