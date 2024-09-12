@@ -34,7 +34,7 @@
                     echo "<br>";
                 }
             } else {
-                echo "<h2>Ei tuloksia hakusanalla $hakuavain</h2>";
+                echo "<h2 class='result'>Ei tuloksia hakusanalla $hakuavain</h2>";
             }
         }
         ?>

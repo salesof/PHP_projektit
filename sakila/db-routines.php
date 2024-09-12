@@ -2,7 +2,7 @@
 $palvelin = "localhost";
 $kayttaja = "root";  // tämä on tietokannan käyttäjä, ei tekemäsi järjestelmän
 $salasana = "";
-$tietokanta = $tietokanta ?? "autodb"; // (isset($tietokanta)) ? $tietokanta : "autodb";
+$tietokanta = $tietokanta ?? "sakila"; // (isset($tietokanta)) ? $tietokanta : "sakila";
 $yhteys = new mysqli($palvelin, $kayttaja, $salasana, $tietokanta);
 if ($yhteys->connect_error) {
     die("Yhteyden muodostaminen epäonnistui: " . $yhteys->connect_error);

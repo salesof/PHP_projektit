@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateErrorPadding(errorSpan) {
     if (errorSpan.textContent.trim() !== "") {
       errorSpan.style.padding = "5px";
-      errorSpan.style.display = "block";
+      errorSpan.style.display = "inline-block";
     } else {
       errorSpan.style.padding = "0";
     }

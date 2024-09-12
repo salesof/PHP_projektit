@@ -80,7 +80,7 @@ function debugger_shutdown($parametrit = "")
         $msg .= " Pysäyttävä virhe $type rivillä " . $error['line'] . ",tiedostossa " . $error['file'];
         $path = $_SERVER['DOCUMENT_ROOT'] . "/debug_shutdown.txt";
         file_put_contents($path, $msg . "\n", FILE_APPEND);
-        echo "<p class='alert alert-danger'>Ohjelman suoritus päättyi virheeseen.</p>";
+        echo "<p class='failure'>Ohjelman suoritus päättyi virheeseen.</p>";
     }
 }
 
