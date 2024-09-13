@@ -45,19 +45,6 @@ function validate_film($data, $yhteys)
         }
     }
 
-    // Validointi rating-kentälle
-    $kentta = "rating";
-    $arvo = $_POST[$kentta] ?? '';
-    if (in_array($kentta, $pakolliset) and empty($arvo)) {
-        $errors[$kentta] = "Ikäraja on pakollinen kenttä.";
-    } else {
-        if (isset($patterns[$kentta]) and !preg_match($patterns[$kentta], $arvo)) {
-            $errors[$kentta] = "Valitse kelvollinen ikäraja (G, PG, PG-13, R, NC-17).";
-        } else {
-            $rating = $yhteys->real_escape_string(strip_tags(trim($arvo)));
-        }
-    }
-
     // Validointi release_year-kentälle
     $kentta = "release_year";
     $arvo = $_POST[$kentta] ?? '';
@@ -66,8 +53,11 @@ function validate_film($data, $yhteys)
     } else {
         if (isset($patterns[$kentta]) and !preg_match($patterns[$kentta], $arvo)) {
             $errors[$kentta] = "Anna kelvollinen julkaisuvuosi (4 numeroa).";
+        } elseif ($arvo < 1901 || $arvo > 2155) {
+            $errors[$kentta] = "Julkaisuvuoden tulee olla välillä 1901–2155.";
         } else {
             $release_year = $yhteys->real_escape_string(strip_tags(trim($arvo)));
+            $data[$kentta] = $release_year;
         }
     }
 
@@ -78,7 +68,7 @@ function validate_film($data, $yhteys)
         $errors[$kentta] = "Kieli on pakollinen kenttä.";
     } else {
         if (isset($patterns[$kentta]) and !preg_match($patterns[$kentta], $arvo)) {
-            $errors[$kentta] = "Valitse kelvollinen kieli.";
+            $errors[$kentta] = "Valitse elokuvan kieli.";
         } else {
             $language_id = $yhteys->real_escape_string(strip_tags(trim($arvo)));
             $data[$kentta] = $language_id;
@@ -134,6 +124,19 @@ function validate_film($data, $yhteys)
             $errors[$kentta] = "Korvaushinnan tulee olla positiivinen numero (enintään kaksi desimaalia).";
         } else {
             $replacement_cost = $yhteys->real_escape_string(strip_tags(trim($arvo)));
+        }
+    }
+
+    // Validointi rating-kentälle
+    $kentta = "rating";
+    $arvo = $_POST[$kentta] ?? '';
+    if (in_array($kentta, $pakolliset) and empty($arvo)) {
+        $errors[$kentta] = "Ikäraja on pakollinen kenttä.";
+    } else {
+        if (isset($patterns[$kentta]) and !preg_match($patterns[$kentta], $arvo)) {
+            $errors[$kentta] = "Valitse elokuvan ikäraja.";
+        } else {
+            $rating = $yhteys->real_escape_string(strip_tags(trim($arvo)));
         }
     }
 

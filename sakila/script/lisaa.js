@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   titleInput.addEventListener("input", function () {
     if (titleInput.value.trim() === "") {
-      titleError.textContent = "Nimi on pakollinen kenttä.";
+      titleError.textContent = "Pakollinen kenttä.";
     } else if (!/^[A-Za-z0-9\s]{2,}$/.test(titleInput.value)) {
       titleError.textContent =
         "Kirjoita elokuvan nimi (väh. 2 merkkiä) ilman erikoismerkkejä.";
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Validate the description field
   descriptionInput.addEventListener("input", function () {
     if (descriptionInput.value.trim() === "") {
-      descriptionError.textContent = "Kuvaus on pakollinen kenttä.";
+      descriptionError.textContent = "Pakollinen kenttä.";
     } else if (descriptionInput.value.length < 3) {
       descriptionError.textContent =
         "Kuvauksen tulee olla vähintään 3 merkkiä pitkä.";
@@ -64,9 +64,15 @@ document.addEventListener("DOMContentLoaded", function () {
   // Validate the release year field
   release_yearSelect.addEventListener("input", function () {
     if (release_yearSelect.value.trim() === "") {
-      release_yearError.textContent = "Julkaisuvuosi on pakollinen kenttä.";
+      release_yearError.textContent = "Pakollinen kenttä.";
     } else if (!/^\d{4}$/.test(release_yearSelect.value)) {
       release_yearError.textContent = "Kirjoita kelvollinen vuosi (4 numeroa).";
+    } else if (
+      release_yearSelect.value < 1901 ||
+      release_yearSelect.value > 2155
+    ) {
+      release_yearError.textContent =
+        "Julkaisuvuoden tulee olla välillä 1901–2155.";
     } else {
       release_yearError.textContent = "";
     }
@@ -76,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Validate the language field
   languageSelect.addEventListener("change", function () {
     if (languageSelect.value === "") {
-      languageError.textContent = "Valitse kieli.";
+      languageError.textContent = "Valitse elokuvan kieli.";
     } else {
       languageError.textContent = "";
     }
@@ -86,9 +92,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Validate the rental duration field
   rental_durationSelect.addEventListener("input", function () {
     if (rental_durationSelect.value.trim() === "") {
-      rental_durationError.textContent = "Vuokra-aika on pakollinen kenttä.";
+      rental_durationError.textContent = "Pakollinen kenttä.";
     } else if (!/^\d+$/.test(rental_durationSelect.value)) {
-      rental_durationError.textContent = "Kirjoita kelvollinen vuokra-aika.";
+      rental_durationError.textContent =
+        "Vuokra-ajan tulee olla positiivinen kokonaisluku.";
     } else {
       rental_durationError.textContent = "";
     }
@@ -98,9 +105,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Validate the rental rate field
   rental_rateSelect.addEventListener("input", function () {
     if (rental_rateSelect.value.trim() === "") {
-      rental_rateError.textContent = "Vuokrahinta on pakollinen kenttä.";
+      rental_rateError.textContent = "Pakollinen kenttä.";
     } else if (!/^\d+(\.\d{1,2})?$/.test(rental_rateSelect.value)) {
-      rental_rateError.textContent = "Kirjoita kelvollinen hinta.";
+      rental_rateError.textContent =
+        "Vuokrahinnan tulee olla positiivinen numero (enintään kaksi desimaalia).";
     } else {
       rental_rateError.textContent = "";
     }
@@ -110,9 +118,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Validate the length field
   lengthSelect.addEventListener("input", function () {
     if (lengthSelect.value.trim() === "") {
-      lengthError.textContent = "Pituus on pakollinen kenttä.";
+      lengthError.textContent = "Pakollinen kenttä.";
     } else if (!/^\d+$/.test(lengthSelect.value)) {
-      lengthError.textContent = "Kirjoita kelvollinen pituus.";
+      lengthError.textContent =
+        "Elokuvan pituuden tulee olla positiivinen kokonaisluku.";
     } else {
       lengthError.textContent = "";
     }
@@ -122,9 +131,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Validate the replacement cost field
   replacement_costSelect.addEventListener("input", function () {
     if (replacement_costSelect.value.trim() === "") {
-      replacement_costError.textContent = "Korvaushinta on pakollinen kenttä.";
+      replacement_costError.textContent = "Pakollinen kenttä.";
     } else if (!/^\d+(\.\d{1,2})?$/.test(replacement_costSelect.value)) {
-      replacement_costError.textContent = "Kirjoita kelvollinen korvaushinta.";
+      replacement_costError.textContent =
+        "Korvaushinnan tulee olla positiivinen numero (enintään kaksi desimaalia).";
     } else {
       replacement_costError.textContent = "";
     }
@@ -134,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Validate the rating field
   ratingSelect.addEventListener("change", function () {
     if (ratingSelect.value === "") {
-      ratingError.textContent = "Valitse ikäraja.";
+      ratingError.textContent = "Valitse elokuvan ikäraja.";
     } else {
       ratingError.textContent = "";
     }
@@ -144,42 +154,42 @@ document.addEventListener("DOMContentLoaded", function () {
   // Prevent form submission if there are invalid fields
   form.addEventListener("submit", function (event) {
     if (!titleInput.checkValidity()) {
-      titleError.textContent = "Pakollinen kenttä";
+      titleError.textContent = "Pakollinen kenttä.";
       event.preventDefault();
     }
     if (
       !descriptionInput.checkValidity() ||
       descriptionInput.value.trim() === ""
     ) {
-      descriptionError.textContent = "Pakollinen kenttä";
+      descriptionError.textContent = "Pakollinen kenttä.";
       event.preventDefault();
     }
     if (release_yearSelect.value.trim() === "") {
-      release_yearError.textContent = "Pakollinen kenttä";
+      release_yearError.textContent = "Pakollinen kenttä.";
       event.preventDefault();
     }
     if (languageSelect.value === "") {
-      languageError.textContent = "Pakollinen kenttä";
+      languageError.textContent = "Pakollinen kenttä.";
       event.preventDefault();
     }
     if (rental_durationSelect.value.trim() === "") {
-      rental_durationError.textContent = "Pakollinen kenttä";
+      rental_durationError.textContent = "Pakollinen kenttä.";
       event.preventDefault();
     }
     if (rental_rateSelect.value.trim() === "") {
-      rental_rateError.textContent = "Pakollinen kenttä";
+      rental_rateError.textContent = "Pakollinen kenttä.";
       event.preventDefault();
     }
     if (lengthSelect.value.trim() === "") {
-      lengthError.textContent = "Pakollinen kenttä";
+      lengthError.textContent = "Pakollinen kenttä.";
       event.preventDefault();
     }
     if (replacement_costSelect.value.trim() === "") {
-      replacement_costError.textContent = "Pakollinen kenttä";
+      replacement_costError.textContent = "Pakollinen kenttä.";
       event.preventDefault();
     }
     if (ratingSelect.value === "") {
-      ratingError.textContent = "Pakollinen kenttä";
+      ratingError.textContent = "Pakollinen kenttä.";
       event.preventDefault();
     }
 

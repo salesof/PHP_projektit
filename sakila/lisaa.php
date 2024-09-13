@@ -23,11 +23,7 @@
                 </label><br />
 
                 <label class="label-additional">Elokuvan kuvaus:<br />
-                    <textarea
-                        id="description"
-                        name="description"
-                        required
-                        rows="4"></textarea>
+                    <textarea id="description" name="description" required rows="4"><?php echo ($_POST['description'] ?? '') ?></textarea>
                     <span class="error" aria-live="polite"></span>
                 </label><br />
 
@@ -113,20 +109,27 @@
 
                 <label class="label-responsive">Elokuvan mahdollinen bonus-sisältö:
                     <p class="label-wrapper">
-                        <input type="checkbox" id="special_features1" name="special_features[]" value="Deleted Scenes">
+                        <input type="checkbox" id="special_features1" name="special_features[]" value="Deleted Scenes"
+                            <?php if (isset($_POST['special_features']) && in_array('Deleted Scenes', $_POST['special_features'])) echo 'checked'; ?>>
                         <label for="special_features1"> Deleted Scenes</label><br />
-                        <input type="checkbox" id="special_features2" name="special_features[]" value="Behind the Scenes">
+
+                        <input type="checkbox" id="special_features2" name="special_features[]" value="Behind the Scenes"
+                            <?php if (isset($_POST['special_features']) && in_array('Behind the Scenes', $_POST['special_features'])) echo 'checked'; ?>>
                         <label for="special_features2"> Behind the Scenes</label><br />
-                        <input type="checkbox" id="special_features3" name="special_features[]" value="Trailers">
+
+                        <input type="checkbox" id="special_features3" name="special_features[]" value="Trailers"
+                            <?php if (isset($_POST['special_features']) && in_array('Trailers', $_POST['special_features'])) echo 'checked'; ?>>
                         <label for="special_features3"> Trailers</label><br />
-                        <input type="checkbox" id="special_features4" name="special_features[]" value="Commentaries">
+
+                        <input type="checkbox" id="special_features4" name="special_features[]" value="Commentaries"
+                            <?php if (isset($_POST['special_features']) && in_array('Commentaries', $_POST['special_features'])) echo 'checked'; ?>>
                         <label for="special_features4"> Commentaries</label>
                     </p>
                     <span class="error" aria-live="polite"></span>
                 </label>
                 <br />
 
-                <input type="submit" name="painike" value="Lähetä" />
+                <input type="submit" name="painike" value="Lisää" />
             </fieldset>
         </form>
 
@@ -142,7 +145,7 @@
             $title = $_POST['title'];
             $description = $_POST['description'];
             $release_year = $_POST['release_year'];
-            $language_id = $_POST['language'];
+            $language_id = (int)$_POST['language_id'];
             $rental_duration = $_POST['rental_duration'];
             $rental_rate = $_POST['rental_rate'];
             $length = $_POST['length'];
@@ -160,7 +163,7 @@
             // Jos validointi epäonnistui, näytetään virheet
             if (!empty($errors)) {
                 foreach ($errors as $error) {
-                    echo "<p class='alert alert-danger'>$error</p>";
+                    echo "<p class='error' style='padding: 5px'>$error</p>";
                 }
             } else {
                 // Jos validointi onnistui, suoritetaan tietokantakysely
@@ -199,7 +202,7 @@
     </div>
 
     <?php
-    //$js = "script/lisaa.js";
+    $js = "script/lisaa.js";
     include "modules/footer.php"
     ?>
 </body>
