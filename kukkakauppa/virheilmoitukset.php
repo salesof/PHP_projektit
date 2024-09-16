@@ -11,15 +11,20 @@ $kentat ??= ['firstname', 'lastname', 'email', 'password', 'password2'];
 $kentat_suomi ??= ['etunimi', 'sukunimi', 'sähköpostiosoite', 'salasana', 'salasana2'];
 $pakolliset ??= ['firstname', 'lastname', 'email', 'password', 'password2'];
 $kaannokset = array_combine($kentat, $kentat_suomi);
+$allowed_images = ['gif', 'png', 'jpg', 'jpeg'];
 //$kaannokset = ['firstname' => 'etunimi', 'lastname' => 'sukunimi', 'email' => 'sähköpostiosoite', 'mobilenumber' => 'matkapuhelinnumero', 'password' => 'salasana', 'password2' => 'salasana uudestaan'];
 //$kaannokset = $kentat_suomi[array_search('lastname',$kentat)]
 $w = "a-zA-Z0-9";
-$patterns['password'] = "/^.{10,}$/";
+$patterns['password'] = "/^.{12,}$/";
 $patterns['password2'] = $patterns['password'];
 /* Huom. Myös heittomerkki ja tavuviiva */
 $patterns['firstname'] = "/^[a-zåäöA-ZÅÄÖ'\-]+$/";
 $patterns['lastname'] = $patterns['firstname'];
+$patterns['name'] = "/^[a-zåäöA-ZÅÄÖ '\-]+$/";
+$patterns['mobilenumber'] = "/^[0-9]{7,15}$/";
 $patterns['email'] = "/^[$w]+[$w.+-]*@[$w-]+(\.[$w-]{2,})?\.[a-zA-Z]{2,}$/";
+$patterns['image'] = "/^[^\s]+\.(jpe?g|png|gif|bmp)$/";
+$patterns['rememberme'] = "/^checked$/";
 
 function randomString($length = 3)
 {
@@ -95,7 +100,8 @@ function validointi($kentat)
     foreach ($kentat as $kentta) {
         $values[$kentta] = "";
         $arvo = $_POST[$kentta] ?? "";
-
+        $apu =  (!empty($arvo) and isset($patterns[$kentta]) and !preg_match($patterns[$kentta], $arvo));
+        debuggeri("kentta:$kentta,arvo:$arvo,apu:$apu");
         /*
          if ($kentta == 'email' and !filter_var($arvo, FILTER_VALIDATE_EMAIL)) {
                 $errors[$kentta] = $virheilmoitukset[$kentta]['typeMismatch'];
@@ -105,7 +111,8 @@ function validointi($kentat)
         if (in_array($kentta, $pakolliset) and empty($arvo)) {
             $errors[$kentta] = $virheilmoitukset[$kentta]['valueMissing'];
         } else {
-            if (!empty($kentta) and isset($patterns[$kentta]) and !preg_match($patterns[$kentta], $arvo)) {
+            if (!empty($arvo) and isset($patterns[$kentta]) and !preg_match($patterns[$kentta], $arvo)) {
+                debuggeri("kentta:$kentta,arvo:$arvo,pattern:" . $patterns[$kentta]);
                 $errors[$kentta] = $virheilmoitukset[$kentta]['patternMismatch'];
             } else {
                 if (is_array($arvo)) $values[$kentta] = $arvo;

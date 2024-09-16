@@ -22,6 +22,32 @@
     <li><a href="tietoa.php">Tietoa Meistä</a></li>
     <li><a href="uutiset.php">Uutiset</a></li>
     <li><a href="yhteys.php">Yhteydenotto</a></li>
-    <li><a href="kirjaudu.php">Kirjaudu</a></li>
+
+    <?php
+    /*if ($loggedIn === 'admin') {
+  echo "<a class='".active('kayttajat',$active). "' href='kayttajat.php'>Käyttäjät</a>";
+  }
+if ($loggedIn) {
+  echo "<a class='".active('profiili',$active). "' href='profiili.php'>Profiili</a>";
+  echo '<a class="nav-suojaus" href="poistu.php">Poistu</a>';
+  }
+if (!$loggedIn) {
+  echo "<a class='nav-suojaus ".active('login',$active)."' href='login.php'>Kirjautuminen</a>";
+  }*/
+
+    switch ($loggedIn) {
+      case 'admin':
+        echo "<li><a class='" . active('kayttajat', $active) . "' href='kayttajat.php'>Käyttäjät</a></li>";
+      case true:
+        echo "<li><a class='" . active('profiili', $active) . "' href='profiili.php'>Profiili</a></li>";
+        echo "<li><a class='nav-suojaus " . active('phpinfo', $active) . "' href='phpinfo.php'>phpinfo</a></li>";
+        echo "<li><a class='" . active('fake', $active) . "' href='fake.php'>fake</a></li>";
+        echo '<li><a href="poistu.php">Poistu</a></li>';
+        break;
+      default:
+        echo "<li><a class='nav-suojaus " . active('login', $active) . "' href='login.php'>Kirjautuminen</a></li>";
+        break;
+    }
+    ?>
   </ul>
 </nav>

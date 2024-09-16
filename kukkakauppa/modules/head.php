@@ -1,3 +1,8 @@
+<?php
+if (!session_id()) session_start();
+ini_set('default_charset', 'utf-8');
+?>
+
 <head>
   <title>Puutarhaliike Neilikka</title>
   <meta charset="utf-8" />
@@ -7,9 +12,13 @@
 
 <?php
 include_once "debuggeri.php";
-require "asetukset.php";
-include "db.php";
-
+/* Huom. suojatulla sivulla on asetukset,db,rememberme.php; */
+if (!isset($loggedIn)) {
+  require "asetukset.php";
+  include "db.php";
+  include "rememberme.php";
+  $loggedIn = loggedIn();
+}
 debuggeri("loggedIn:$loggedIn");
 register_shutdown_function('debuggeri_shutdown');
 $active = basename($_SERVER['PHP_SELF'], ".php");
@@ -18,6 +27,4 @@ function active($sivu, $active)
 {
   return $active == $sivu ? 'active' : '';
 }
-
-/* Huom. nav-suojaus vie viimeiset linkit oikealle. */
 ?>

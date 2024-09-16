@@ -11,8 +11,8 @@ require 'SMTP.php';
 
 function posti($emailTo, $msg, $subject)
 {
-    $emailFrom = "wohjelmointi@gmail.com";
-    $emailFromName = "Ohjelmointikurssi";
+    $emailFrom = "asiakaspalvelu@neilikka.fi";
+    $emailFromName = "Neilikka";
     $emailToName = "";
     /* Generoidaan fatal error shutdown function-testaamiseksi. */
     /* throw new Error('Tästä seuraisi fatal error, sillä kutsu on try-catchin ulkopuolella.'); */
