@@ -9,8 +9,8 @@ $PALVELUOSOITE = "asiakaspalvelu@neilikka.fi";
 define("OLETUSSIVU", "profiili.php");
 define("PROFIILIKUVAKANSIO", "profiilikuvat");
 define("PROFIILIKUVAKOKO", 5242880);
-define("EMAIL_FROM", "wohjelmointi@gmail.com");
-define("EMAIL_FROM_NAME", "Ohjelmointikurssi");
+define("EMAIL_FROM", "asiakaspalvelu@neilikka.fi");
+define("EMAIL_FROM_NAME", "Puutarhaliike Neilikka");
 define("YRITYSKERRAT", 3);
 
 $DB = "neilikka";

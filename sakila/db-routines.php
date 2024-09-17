@@ -23,7 +23,7 @@ function mysqli_my_query($query)
          echo "<p class='alert alert-danger'>Tietokantakysely epäonnistui.</p>";
          } */
     } catch (Exception $e) {
-        echo "<p class='alert alert-danger'>Virhe tietokantakyselyssä.</p>";
+        echo "<p class='error'>Virhe tietokantakyselyssä.</p>";
         debugger("Virhe $yhteys->errno: " . $e->getMessage());
     }
     return $result;

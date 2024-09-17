@@ -1,6 +1,6 @@
 <nav>
   <div class="logo">
-    <a href="index.php"><img src="img/logo.png" /></a>
+    <a href="index.php"><img src="img/logo.png" alt="Neilikka logo" /></a>
   </div>
   <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
   <ul class="nav-links" id="navLinks">
@@ -24,16 +24,6 @@
     <li><a href="yhteys.php">Yhteydenotto</a></li>
 
     <?php
-    /*if ($loggedIn === 'admin') {
-  echo "<a class='".active('kayttajat',$active). "' href='kayttajat.php'>Käyttäjät</a>";
-  }
-if ($loggedIn) {
-  echo "<a class='".active('profiili',$active). "' href='profiili.php'>Profiili</a>";
-  echo '<a class="nav-suojaus" href="poistu.php">Poistu</a>';
-  }
-if (!$loggedIn) {
-  echo "<a class='nav-suojaus ".active('login',$active)."' href='login.php'>Kirjautuminen</a>";
-  }*/
 
     switch ($loggedIn) {
       case 'admin':

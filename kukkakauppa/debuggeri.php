@@ -1,87 +1,84 @@
 <?php
 if (!defined('DEBUG')) define('DEBUG', true);
 
+// Rekisteröi mukautettu virheenkäsittelijä
+if (DEBUG) {
+  set_error_handler('debug_error_handler');
+  register_shutdown_function('debuggeri_shutdown');
+}
+
 function debug_error_handler($errno, $errstr, $errfile, $errline)
 {
   if (!(error_reporting() & $errno)) {
-    // This error code is not included in error_reporting, so let it fall
-    // through to the standard PHP error handler
+    // Tämä virhekoodi ei ole virheiden raportoinnissa, joten anna sen kulkea
     return false;
   }
 
+  $message = "";
   switch ($errno) {
     case E_USER_ERROR:
-      echo "<b>My ERROR</b> [$errno] $errstr<br />\n";
-      echo "  Fatal error on line $errline in file $errfile";
-      echo ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
-      echo "Aborting...<br />\n";
+      $message = "<b>My ERROR</b> [$errno] $errstr<br />\n";
+      $message .= "  Fatal error on line $errline in file $errfile";
+      $message .= ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
+      $message .= "Aborting...<br />\n";
       exit(1);
       break;
 
     case E_USER_WARNING:
-      echo "<b>My WARNING</b> [$errno] $errstr<br />\n";
+      $message = "<b>My WARNING</b> [$errno] $errstr<br />\n";
       break;
 
     case E_USER_NOTICE:
-      echo "<b>My NOTICE</b> [$errno] $errstr<br />\n";
+      $message = "<b>My NOTICE</b> [$errno] $errstr<br />\n";
       break;
 
     default:
-      //echo "System generated error: [$errno] $errstr<br />\n";
       return false;
       break;
   }
-  /* Don't execute PHP internal error handler */
+
+  debuggeri($message);
+  /* Älä suorita PHP:n sisäistä virheenkäsittelijää */
   return true;
 }
 
-
 function debuggeri($arvo)
 {
-  if (defined('DEBUG') and !DEBUG) return;
+  if (!DEBUG) return;
   $msg = is_array($arvo) ? var_export($arvo, true) : $arvo;
-  $msg = date("Y-m-d H:i:s") . " " . $msg;
-  file_put_contents("debug_log.txt", $msg . "\n", FILE_APPEND);
+  $msg = date("Y-m-d H:i:s") . " " . $msg . "\n";
+  file_put_contents("debug_log.txt", $msg, FILE_APPEND | LOCK_EX);
 }
-
 
 function debuggeri_filter($n)
 {
-  //$pop = array_shift($n);
-  $args = implode(",", $n['args']);
-  $m = basename($n['file']) . ",rivi " . $n['line'] . "," . $n['function'] . "($args)";
+  $args = isset($n['args']) ? implode(",", $n['args']) : "";
+  $m = basename($n['file']) . ", rivi " . $n['line'] . ", " . $n['function'] . "($args)";
   return $m;
 }
 
-
 function debuggeri_backtrace($errorMsg)
 {
-  if (defined('DEBUG') and !DEBUG) return;
+  if (!DEBUG) return;
   $msg = date("Y-m-d H:i:s") . " " . $errorMsg;
-  if ($backtrace = debug_backtrace()) {
-    //file_put_contents("debug_log.txt", __FUNCTION__.",".var_export($backtrace,true)."\n", FILE_APPEND);  
+  if ($backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)) {
     array_shift($backtrace);
     $backtrace = array_reverse($backtrace);
     $backtrace = array_map('debuggeri_filter', $backtrace);
     $msg .= "\n" . implode("\n", $backtrace);
   }
-  file_put_contents("debug_log.txt", $msg . "\n", FILE_APPEND);
+  debuggeri($msg);
 }
 
-
-function debuggeri_shutdown($parametrit = "")
+function debuggeri_shutdown()
 {
-  if (defined('DEBUG') and !DEBUG) return;
+  if (!DEBUG) return;
   $error = error_get_last();
-  //var_export($error);
-  if ($error and $error['type'] === E_ERROR) {
+  if ($error && $error['type'] === E_ERROR) {
     $type = $error['type'];
     $msg = date("Y-m-d H:i:s") . " Ohjelman suoritus päättyi.";
-    $msg .= " Pysäyttävä virhe $type rivillä " . $error['line'] . ",tiedostossa " . $error['file'];
-    $path = $_SERVER['DOCUMENT_ROOT'] . "/debug_shutdown.txt";
-    file_put_contents($path, $msg . "\n", FILE_APPEND);
+    $msg .= " Pysäyttävä virhe $type rivillä " . $error['line'] . ", tiedostossa " . $error['file'];
+    file_put_contents("debug_shutdown.txt", $msg . "\n", FILE_APPEND | LOCK_EX);
     echo "<p>Ohjelman suoritus päättyi virheeseen.</p>";
   }
 }
-
-if (defined('DEBUG') and !DEBUG) $old_error_reporting = error_reporting(0);

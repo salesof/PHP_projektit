@@ -9,7 +9,6 @@
        <?php
        /* Huom. Tässä salasanakenttien täsmääminen tarkistetaan vain palvelimella. */
        $tietokanta = "neilikka";
-       $title = 'Rekisteröityminen';
        $kentat = ['firstname', 'lastname', 'email', 'password', 'password2'];
        $kentat_suomi = ['etunimi', 'sukunimi', 'sähköpostiosoite', 'salasana', 'salasana'];
        $pakolliset = ['firstname', 'lastname', 'email', 'password', 'password2'];
@@ -20,6 +19,7 @@
        include "posti.php";
        include "rekisterointi.php";
        ?>
+
        <div class="container">
 
               <h1>Luo tunnus palveluun</h1>
@@ -27,7 +27,8 @@
               <?php
               if ($success != "success") { ?>
 
-                     <form method="post" novalidate>
+                     <form method="post" novalidate enctype="multipart/form-data" autocomplete="on">
+
                             <fieldset>
 
                                    <label for="firstname">Etunimi:</label>
