@@ -69,7 +69,7 @@
                                    </div>
 
                                    <label for="image">Kuva:</label><br />
-                                   <input id="image" name="image" type="file" accept="image/*" pattern="<?= pattern('image'); ?>"
+                                   <input id="image" name="image" type="file" class="img-button" accept="image/*" pattern="<?= pattern('image'); ?>"
                                           class="<?= is_invalid('image'); ?>" placeholder="kuva"></input>
                                    <div class="error">
                                           <?= $errors['image'] ?? ""; ?>

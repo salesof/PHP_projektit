@@ -323,6 +323,28 @@ select {
   font-size: 1em;
 }
 
+input[type="file"] {
+  font-family: "Poppins", sans-serif;
+  color: #333;
+  font-size: 1em;
+}
+
+.img-button::-webkit-file-upload-button {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+  font-size: 0.8em;
+}
+
+.img-button::-webkit-file-upload-button:hover {
+  background-color: #ccc;
+  transition-property: background-color, border-color, color, box-shadow, filter;
+  transition-duration: 0.3s;
+}
+
 input[type="radio"] {
   margin-right: 5px;
 }

@@ -11,7 +11,6 @@ define("PROFIILIKUVAKANSIO", "profiilikuvat");
 define("PROFIILIKUVAKOKO", 5242880);
 define("EMAIL_FROM", "asiakaspalvelu@neilikka.fi");
 define("EMAIL_FROM_NAME", "Puutarhaliike Neilikka");
-define("YRITYSKERRAT", 3);
 
 $DB = "neilikka";
 $LOCAL = in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', 'REMOTE_ADDR' => '::1'));
@@ -45,7 +44,7 @@ if (SAHKOPOSTIPALVELU == 'sendgrid') {
     define("EMAIL_PASSWORD", $password_sendgrid);
 } elseif (SAHKOPOSTIPALVELU == 'mailtrap') {
     /* Mailtrap */
-    define("EMAIL_HOST", 'smtp.mailtrap.io');
+    define("EMAIL_HOST", 'sandbox.smtp.mailtrap.io');
     define("EMAIL_PORT", 2525);
     define("EMAIL_USERNAME", $username_mailtrap);
     define("EMAIL_PASSWORD", $password_mailtrap);
