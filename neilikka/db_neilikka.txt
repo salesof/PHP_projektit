@@ -11,6 +11,11 @@ CREATE TABLE users (
     reset_expires DATETIME
 );
 
+INSERT INTO users (firstname, lastname, email, password, image, token, reset_token, reset_expires) VALUES
+('Matti', 'Meikäläinen', 'matti@example.com', 'salasana1', '', 'token1', NULL, NULL),
+('Liisa', 'Esimerkki', 'liisa@example.com', 'salasana2', '', 'token2', NULL, NULL),
+('Kalle', 'Kukkaruukku', 'kalle@example.com', 'salasana3', '', 'token3', NULL, NULL);
+
 CREATE TABLE news (
     id INT PRIMARY KEY,
     imgUrl VARCHAR(255) NOT NULL,
